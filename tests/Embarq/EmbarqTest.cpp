@@ -1,22 +1,31 @@
 #include "CppUTest/TestHarness.h"
+#include "CppUTestExt/MockSupport.h"
+//#include "CppUTestExt/MockExpectedCall.h"
 
-extern "C"
-{
+
+#include "../mock/micros.h"
+
+extern "C" {
   #include "DHT_11.h"
 }
 
-TEST_GROUP(Embarq)
-{
-  void setup()
-  {
-  }
+TEST_GROUP(Embarq) {
+    void setup() {
+    }
 
-  void teardown() 
-  {
-  }
+    void teardown() {
+        mock().clear();
+    }
 };
 
 TEST(Embarq, Test)
 {
-  FAIL("Fail me");
+	FAIL("Fail me");
 }
+
+TEST(Embarq, Test2) {
+    mock().expectOneCall("micros").andReturnValue(10);
+    micros();
+    mock().checkExpectations();
+}
+
