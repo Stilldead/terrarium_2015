@@ -1,7 +1,7 @@
 #include <stdint.h>
 
-#ifndef __DHT_11__
-#define __DHT_11__
+#ifndef __DHT_11__H
+#define __DHT_11__H
 
 class DHT_11 {
     private:
@@ -16,4 +16,4 @@ class DHT_11 {
         uint8_t getTemperature();                         // get the temperature value (unit8)
 };
 
-#endif __DHT_11__
+#endif

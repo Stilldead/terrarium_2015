@@ -1,6 +1,6 @@
 #include "CppUTest/CommandLineTestRunner.h"
 
-IMPORT_TEST_GROUP(Potter);
+IMPORT_TEST_GROUP(Embarq);
 
 int main(int argc, char** argv)
 {
