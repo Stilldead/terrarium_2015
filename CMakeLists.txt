@@ -11,6 +11,7 @@ endif()
 
 enable_language(C)
 enable_language(CXX)
+set(CMAKE_CXX_FLAGS -std=c++11)
 
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 set (CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
