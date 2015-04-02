@@ -1,1 +1,3 @@
-https://skyduino.wordpress.com/2013/04/27/tuto-capteur-temperature-humidite-dht11/
+Xbee :http://jeromeabel.net/ressources/xbee-arduino#toc8
+https://learn.sparkfun.com/tutorials/xbee-shield-hookup-guide/example-remote-control-arduino
+

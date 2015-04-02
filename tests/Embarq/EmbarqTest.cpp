@@ -2,7 +2,7 @@
 
 extern "C"
 {
-  #include "DHT_11.h"
+  #include "XBee.h"
 }
 
 TEST_GROUP(Embarq)
@@ -16,11 +16,13 @@ TEST_GROUP(Embarq)
   }
 };
 
-TEST_GROUP(FirstTestGroup)
-{
-};
 
-TEST(FirstTestGroup, FirstTest)
+TEST(Embarq, FirstTest)
 {
    FAIL("Fail me!");
+}
+
+TEST(Embarq, readAPin)
+{
+    CHECK_TRUE(readAPin(
 }

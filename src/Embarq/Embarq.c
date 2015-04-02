@@ -1,2 +1,17 @@
+#include "XBee.h";
 
-#include "string.h"
+void readDPin() {
+
+}
+
+void readAPin() {
+
+}
+
+void writeDPin() {
+
+}
+
+void writeAPin() {
+
+}
