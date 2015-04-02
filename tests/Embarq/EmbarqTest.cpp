@@ -1,12 +1,10 @@
 #include "CppUTest/TestHarness.h"
-#include "CppUTestExt/MockSupport.h"
-//#include "CppUTestExt/MockExpectedCall.h"
+#include <iostream>
 
-
-#include "../mock/micros.h"
+#include "../mock/Test.h"
 
 extern "C" {
-  #include "DHT_11.h"
+    #include "DHT_11.h"
 }
 
 TEST_GROUP(Embarq) {
@@ -14,18 +12,15 @@ TEST_GROUP(Embarq) {
     }
 
     void teardown() {
-        mock().clear();
     }
 };
 
-TEST(Embarq, Test)
-{
-	FAIL("Fail me");
+TEST(Embarq, Test) {
+    FAIL("Fail me");
 }
 
 TEST(Embarq, Test2) {
-    mock().expectOneCall("micros").andReturnValue(10);
-    micros();
-    mock().checkExpectations();
+
+    std::cout << Test::micros();
 }
 
