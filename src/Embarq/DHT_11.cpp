@@ -1,7 +1,9 @@
 #include "DHT_11.h"
 #include "mock.h"
 
-int8_t chkdelay(uint8_t us, uint8_t status) {
+DHT_11::DHT_11 () {}
+
+int8_t DHT_11::chkdelay(uint8_t us, uint8_t status) {
     //pinMode(pin, INPUT);
     uint8_t pin = 1;
     unsigned long t = mock::myMock_micros();
@@ -10,14 +12,14 @@ int8_t chkdelay(uint8_t us, uint8_t status) {
     return 0;
 }
 
-int8_t read(uint8_t pin) {
+int8_t DHT_11::read(uint8_t pin) {
 
 }
 
-uint8_t getHumidity() {
+uint8_t DHT_11::getHumidity() {
 
 }
 
-uint8_t getTemperature() {
+uint8_t DHT_11::getTemperature() {
 
 }
