@@ -1,6 +1,4 @@
 #include "CppUTest/TestHarness.h"
-#include <iostream>
-
 
 extern "C" {
     #include "DHT_11.h"
@@ -14,7 +12,11 @@ TEST_GROUP(Embarq) {
     }
 };
 
-TEST(Embarq, Test) {
-    FAIL("Fail me");
+TEST(Embarq, Test_Chkdelay_True) {
+    CHECK_EQUAL(0, chkdelay(100, 1));
+}
+
+TEST(Embarq, Test_Chkdelay_False) {
+    CHECK_EQUAL(1, chkdelay(100, 0));
 }
 
