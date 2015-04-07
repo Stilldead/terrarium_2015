@@ -10,8 +10,8 @@ class DHT_11 {
         uint8_t Humidity;                               // humidity value
 
         int8_t chkdelay(uint8_t us, uint8_t status);    // check level duration
-        int8_t read(uint8_t pin);                       // read sensor data
     public:
+        int8_t read(uint8_t pin);                       // read sensor data
         uint8_t getHumidity();                            // get the humidity value (unit8)
         uint8_t getTemperature();                         // get the temperature value (unit8)
 };

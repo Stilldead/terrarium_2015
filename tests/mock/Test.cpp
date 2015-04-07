@@ -11,3 +11,7 @@ double Test::micros() {
     long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(elapsed).count();
     return microseconds;
 }
+
+String Test::DigitalRead() {
+    
+}
