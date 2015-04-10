@@ -19,9 +19,11 @@ TEST(Embarq, Test) {
 TEST(Embarq, Test_Chkdelay_True) {
     DHT_11* Sensor = new DHT_11();
     CHECK_EQUAL(0, Sensor->chkdelay(100, 1));
+    delete Sensor;
 }
 
 TEST(Embarq, Test_Chkdelay_False) {
     DHT_11* Sensor = new DHT_11();
     CHECK_EQUAL(1, Sensor->chkdelay(100, 0));
+    delete Sensor;
 }
