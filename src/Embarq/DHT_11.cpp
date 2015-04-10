@@ -30,7 +30,7 @@ int8_t DHT_11::read(uint8_t pin) {
     for (uint8_t i=0; i< 5; i++) bytes[i] = 0;
 
     // Verify if the data line is busy
-    if (!chkdelay(100, HIGH)) return -3; // data line busy
+    if (chkdelay(100, HIGH)) return -3; // data line busy
 
     // Send Start signal
     /*pinMode(pin, OUTPUT);

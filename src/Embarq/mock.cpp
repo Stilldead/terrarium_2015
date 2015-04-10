@@ -14,7 +14,7 @@ double mock::myMock_micros() {
 uint8_t mock::myMock_DigitalRead(uint8_t pin) {
     int random = rand() % 100;
     usleep(random);
-    if(random < 60)
+    if(random < 50)
         return 1;
     else
         return 0;

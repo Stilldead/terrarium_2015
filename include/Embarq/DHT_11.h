@@ -7,7 +7,7 @@ class DHT_11 {
     private:
         uint8_t sensorPin;                              // default sensor pin
         uint8_t temperature;                            // temperature value
-        uint8_t Humidity;                               // humidity value
+        uint8_t humidity;                               // humidity value
 
     public:
         DHT_11 ();

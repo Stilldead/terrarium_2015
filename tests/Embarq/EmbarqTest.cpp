@@ -39,3 +39,30 @@ TEST(Embarq, Test_Chkdelay_LOW_False) {
     CHECK_EQUAL(1, Sensor->chkdelay(100, 0));
     delete Sensor;
 }
+
+TEST(Embarq, Test_Read) {
+    DHT_11* Sensor = new DHT_11();
+    CHECK_EQUAL(0, Sensor->read(42));
+    delete Sensor;
+}
+
+TEST(Embarq, Test_Read_ChkErrors) {
+    DHT_11* Sensor = new DHT_11();
+    int read = Sensor->read(42);
+
+    switch (read) {
+        case -3:
+            FAIL("data line busy");
+            break;
+        case -2:
+            FAIL("Timeout");
+            break;
+        case -1:
+            FAIL("checksum error");
+            break;
+        default:
+            CHECK_EQUAL(0, Sensor->read(42));
+    }
+    
+    delete Sensor;
+}
