@@ -1,7 +1,7 @@
 #include "mock.h"
-#include <stdlib.h>     /* srand, rand */
-#include <unistd.h>  // usleep
-#include <sys/time.h>  // gettimeofday
+#include <stdlib.h>     // srand, rand
+#include <unistd.h>     // usleep
+#include <sys/time.h>   // gettimeofday
 
 
 
@@ -12,9 +12,9 @@ double mock::myMock_micros() {
 }
 
 uint8_t mock::myMock_DigitalRead(uint8_t pin) {
-    int random = rand() % 80;
+    int random = rand() % 100;
     usleep(random);
-    if(random % 2 == 0)
+    if(random < 60)
         return 1;
     else
         return 0;
