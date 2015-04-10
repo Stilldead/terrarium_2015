@@ -1,14 +1,19 @@
 #include "DHT_11.h"
 #include "mock.h"
 
+#define micros() mock::myMock_micros()
+#define DigitalRead(x) mock::myMock_DigitalRead(x)
+#define LOW 0
+#define HIGH 1
+
 DHT_11::DHT_11 () {}
 
 int8_t DHT_11::chkdelay(uint8_t us, uint8_t status) {
     //pinMode(pin, INPUT);
     uint8_t pin = 1;
-    double t = mock::myMock_micros();
-    while(mock::myMock_DigitalRead(pin) == status) // wait for a status variation
-        if ((mock::myMock_micros() - t) > us) return 1;  // or a timeout
+    double t = micros();
+    while(DigitalRead(pin) == status) // wait for a status variation
+        if ((micros() - t) > us) return 1;  // or a timeout
     return 0;
 }
 
@@ -28,11 +33,11 @@ int8_t DHT_11::read(uint8_t pin) {
     if (!chkdelay(100, HIGH)) return -3; // data line busy
 
     // Send Start signal
-    pinMode(pin, OUTPUT);
+    /*pinMode(pin, OUTPUT);
     digitalWrite(pin, LOW);
     delay(18);
     digitalWrite(pin, HIGH);
-    delayMicroseconds(40);
+    delayMicroseconds(40);*/
 
     // Wait the Acknowledge signal
     if (chkdelay(100, LOW)) return -2;  // Timeout
