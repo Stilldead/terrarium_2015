@@ -18,51 +18,48 @@ TEST(Embarq, Test) {
 
 TEST(Embarq, Test_Chkdelay_HIGH_True) {
     DHT_11* Sensor = new DHT_11();
-    CHECK_EQUAL(0, Sensor->chkdelay(100, 1));
+    CHECK_EQUAL(0, Sensor->chkdelay(100, 1, 0));
     delete Sensor;
 }
 
 TEST(Embarq, Test_Chkdelay_HIGH_False) {
     DHT_11* Sensor = new DHT_11();
-    CHECK_EQUAL(1, Sensor->chkdelay(100, 1));
+    CHECK_EQUAL(1, Sensor->chkdelay(100, 1, 2));
     delete Sensor;
 }
 
 TEST(Embarq, Test_Chkdelay_LOW_True) {
     DHT_11* Sensor = new DHT_11();
-    CHECK_EQUAL(0, Sensor->chkdelay(100, 0));
+    CHECK_EQUAL(0, Sensor->chkdelay(100, 0, 0));
     delete Sensor;
 }
 
 TEST(Embarq, Test_Chkdelay_LOW_False) {
     DHT_11* Sensor = new DHT_11();
-    CHECK_EQUAL(1, Sensor->chkdelay(100, 0));
+    CHECK_EQUAL(1, Sensor->chkdelay(100, 0, 2));
     delete Sensor;
 }
 
 TEST(Embarq, Test_Read) {
     DHT_11* Sensor = new DHT_11();
-    CHECK_EQUAL(0, Sensor->read(42));
+    CHECK_EQUAL(0, Sensor->read(42, ""));
     delete Sensor;
 }
 
-TEST(Embarq, Test_Read_ChkErrors) {
+TEST(Embarq, Test_Read_DataLineBusy) {
     DHT_11* Sensor = new DHT_11();
-    int read = Sensor->read(42);
+    CHECK_EQUAL(-3, Sensor->read(42, "data line busy"));
+    delete Sensor;
+}
 
-    switch (read) {
-        case -3:
-            FAIL("data line busy");
-            break;
-        case -2:
-            FAIL("Timeout");
-            break;
-        case -1:
-            FAIL("checksum error");
-            break;
-        default:
-            CHECK_EQUAL(0, Sensor->read(42));
-    }
-    
+TEST(Embarq, Test_Read_Timeout) {
+    DHT_11* Sensor = new DHT_11();
+    CHECK_EQUAL(-2, Sensor->read(42, "Timeout"));
+    delete Sensor;
+}
+
+TEST(Embarq, Test_Read_ChecksumError) {
+    DHT_11* Sensor = new DHT_11();
+    CHECK_EQUAL(-1, Sensor->read(42, "checksum error"));
     delete Sensor;
 }
