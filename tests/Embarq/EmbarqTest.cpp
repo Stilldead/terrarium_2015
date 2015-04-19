@@ -1,4 +1,5 @@
 #include "CppUTest/TestHarness.h"
+#include "XBee.h"
 
 extern "C"
 {
@@ -21,28 +22,37 @@ TEST(Embarq, Test)
   FAIL("Fail me");
 }
 
-TEST(Embarq, Test_returnTab)
+TEST(Embarq, Test_receive1)
 {
-  string entete = "32";
-  string expediteur = "11.111.111.11";
-  string destinataire = "22.222.222.22";
-  string message = "coucou";
-  string queue = "fin";
-  string tab[] = {entete, expediteur, destinataire, message, queue};
-  bytes datagramme[5] = {entete.getBytes(), expediteur.getBytes(), destinataire.getBytes(), message.getBytes(), queue.getBytes()};
- 
-  CHECK_EQUALS(tab, receiveData(datagramme));
+  std::string entete = "37";
+  std::string expediteur = "11.111.111.11";
+  std::string destinataire = "22.222.222.22";
+  std::string message = "coucou";
+  std::string queue = "fin";
+  std::string tab[] = {entete, expediteur, destinataire, message, queue};
+  CHECK_EQUAL(tab, Xbee::receive());
 }
 
-TEST(Embarq, Test_returnTab)
+TEST(Embarq, Test_send1)
 {
-  string entete = "64";
-  string expediteur = "11.111.111.11";
-  string destinataire = "22.222.222.22";
-  string message = "salut";
-  string queue = "fin";
-  string tab[] = {entete, expediteur, destinataire, message, queue};
-  bytes datagramme[5] = {entete.getBytes(), expediteur.getBytes(), destinataire.getBytes(), message.getBytes(), queue.getBytes()};
+  std::string entete = "64";
+  std::string expediteur = "11.111.111.11";
+  std::string destinataire = "22.222.222.22";
+  std::string message = "salut";
+  std::string queue = "fin";
+  std::string datagramme[4] = {expediteur, destinataire, message, queue};
  
-  CHECK_EQUALS(tab, receiveData(datagramme));
+  CHECK_EQUAL(true, Xbee::send(datagramme));
+}
+
+TEST(Embarq, Test_send2)
+{
+  std::string entete = "64";
+  std::string expediteur = "11.111.111.11";
+  std::string destinataire = "22.222.222.22";
+  std::string message = "salut";
+  std::string queue = "fin";
+  std::string datagramme[4] = {expediteur, destinataire, message, queue};
+ 
+  CHECK_EQUAL(false, Xbee::send(datagramme));
 }
